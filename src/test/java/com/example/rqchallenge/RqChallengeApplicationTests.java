@@ -31,7 +31,7 @@ class RqChallengeApplicationTests {
 
     @Test
     void getEmployeeById_exceptionTest() throws Exception {
-        Throwable thrown = assertThrows(RqChallengeException.class, () ->
+        assertThrows(RqChallengeException.class, () ->
                 this.restTemplate.restTemplate()
                         .getForObject("http://localhost:" + port + "/test" + 2,
                                 Employee.class)
@@ -40,7 +40,7 @@ class RqChallengeApplicationTests {
 
     @Test
     void getHighestSalaryOfEmployees_exceptionTest() throws Exception {
-        Throwable thrown = assertThrows(RqChallengeException.class, () ->
+        assertThrows(RqChallengeException.class, () ->
                 this.restTemplate.restTemplate()
                         .getForObject("http://localhost:" + port + "/highestSalaryIncorrect",
                                 Integer.class)
@@ -49,7 +49,7 @@ class RqChallengeApplicationTests {
 
     @Test
     void getEmployeesByNameSearch_exceptionTest() throws Exception {
-        Throwable thrown = assertThrows(RqChallengeException.class, () ->
+        assertThrows(RqChallengeException.class, () ->
                 this.restTemplate.restTemplate()
                         .getForObject("http://localhost:" + port + "/searchTest/Ronald",
                                 ResponseEntity.class)
@@ -58,7 +58,7 @@ class RqChallengeApplicationTests {
 
     @Test
     void getTopTenHighestEarningEmployeeNames_exceptionTest() throws Exception {
-        Throwable thrown = assertThrows(RqChallengeException.class, () ->
+        assertThrows(RqChallengeException.class, () ->
                 this.restTemplate.restTemplate()
                         .getForObject("http://localhost:" + port + "/11topTenHighestEarningEmployeeNames",
                                 ResponseEntity.class)
@@ -67,7 +67,7 @@ class RqChallengeApplicationTests {
 
     @Test
     void deleteEmployeeById_exceptionTest() throws Exception {
-        Throwable thrown = assertThrows(RqChallengeException.class, () ->
+        assertThrows(RqChallengeException.class, () ->
                 this.restTemplate.restTemplate()
                         .delete("http://localhost:" + port + "/delete" + 2,
                                 String.class)
