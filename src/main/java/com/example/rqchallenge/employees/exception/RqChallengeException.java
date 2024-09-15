@@ -17,15 +17,7 @@ public class RqChallengeException extends RuntimeException {
         return statusCode;
     }
 
-    public void setStatusCode(HttpStatus statusCode) {
-        this.statusCode = statusCode;
-    }
-
     public String getError() {
         return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
     }
 }

@@ -37,7 +37,8 @@ public class ExternalApiServiceImpl implements IExternalApiService {
      */
 
     public Employee callDummyApitoGetEmployeebyId(Integer employeeId){
-        ExternalApiCreateResponse responseObj =  restTemplate.getForObject(
+        ExternalApiCreateResponse responseObj = new ExternalApiCreateResponse();
+                responseObj = restTemplate.getForObject(
                 RqChallengeConstants.GET_EMPLOYEE_BY_ID, ExternalApiCreateResponse.class,employeeId);
         return responseObj.getData();
     }
