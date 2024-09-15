@@ -1,12 +1,11 @@
 package com.example.rqchallenge.employees.exception;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 
 public class RqChallengeException extends RuntimeException {
 
-        private HttpStatus statusCode;
-        private String error;
+        private final HttpStatus statusCode;
+        private final String error;
 
     public RqChallengeException(HttpStatus statusCode, String error) {
         super(error);

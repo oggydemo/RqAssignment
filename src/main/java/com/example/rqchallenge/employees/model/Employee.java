@@ -1,7 +1,5 @@
 package com.example.rqchallenge.employees.model;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
 
 import java.io.Serializable;
 

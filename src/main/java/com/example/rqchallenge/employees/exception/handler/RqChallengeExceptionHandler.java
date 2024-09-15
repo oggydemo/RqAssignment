@@ -1,6 +1,5 @@
 package com.example.rqchallenge.employees.exception.handler;
 
-import com.example.rqchallenge.employees.controller.impl.EmployeeController;
 import com.example.rqchallenge.employees.exception.RqChallengeException;
 import com.example.rqchallenge.employees.model.response.ErrorResponse;
 import org.slf4j.Logger;
@@ -19,7 +18,7 @@ public class RqChallengeExceptionHandler {
 
     @ExceptionHandler(value = RqChallengeException.class)
     ResponseEntity<ErrorResponse> handleMyRestTemplateException(RqChallengeException ex, HttpServletRequest request) {
-        logger.error("Error occurred while processing , received response from external API server {} :" , ex.getStatusCode().toString());
+        logger.error("Error occurred while processing , received response from external API is : {}" , ex.getStatusCode());
         return new ResponseEntity<>(new ErrorResponse(ex, request.getRequestURI()), ex.getStatusCode());
     }
 

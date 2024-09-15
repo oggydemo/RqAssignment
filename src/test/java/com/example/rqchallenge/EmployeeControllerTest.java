@@ -19,7 +19,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class EmployeeControllerTest {
+class EmployeeControllerTest {
 
     @InjectMocks
     private EmployeeController controller;
@@ -28,7 +28,7 @@ public class EmployeeControllerTest {
     private IRqChallengeService rqChallengeService;
 
     @Test
-    public void test_getAllEmployee() throws IOException
+    void test_getAllEmployee() throws IOException
     {
         List<Employee> employeesMock = new ArrayList<>();
         Employee emp = new Employee();
@@ -45,7 +45,7 @@ public class EmployeeControllerTest {
     }
 
     @Test
-    public void test_getEmployeesByNameSearch() throws IOException
+     void test_getEmployeesByNameSearch()
     {
         List<Employee> employeesMock = new ArrayList<>();
         Employee emp1 = new Employee();
@@ -69,7 +69,7 @@ public class EmployeeControllerTest {
     }
 
     @Test
-    public void test_getEmployeeById() throws IOException
+     void test_getEmployeeById()
     {
         Employee emp1 = new Employee();
         emp1.setId(1);
@@ -84,7 +84,7 @@ public class EmployeeControllerTest {
     }
 
     @Test
-    public void test_getHighestSalaryOfEmployees() throws IOException
+    void test_getHighestSalaryOfEmployees()
     {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
@@ -94,7 +94,7 @@ public class EmployeeControllerTest {
     }
 
     @Test
-    public void test_getTopTenHighestEarningEmployeeNames() throws IOException
+    void test_getTopTenHighestEarningEmployeeNames()
     {
         List<String> employeeNames = new ArrayList<>();
         employeeNames.add("test1");
@@ -116,7 +116,7 @@ public class EmployeeControllerTest {
     }
 
     @Test
-    public void test_createEmployee() throws IOException
+    void test_createEmployee()
     {
         Employee emp1 = new Employee();
         emp1.setId(1);
@@ -131,7 +131,7 @@ public class EmployeeControllerTest {
     }
 
     @Test
-    public void test_deleteEmployeeById() throws IOException
+    void test_deleteEmployeeById()
     {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));

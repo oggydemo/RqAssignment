@@ -3,7 +3,6 @@ package com.example.rqchallenge.employees.controller.impl;
 import com.example.rqchallenge.employees.IEmployeeController;
 import com.example.rqchallenge.employees.model.Employee;
 import com.example.rqchallenge.employees.service.IRqChallengeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,9 +17,11 @@ public class EmployeeController implements IEmployeeController {
     // creating a logger
     Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
-    @Autowired
     private IRqChallengeService rqChallengeService;
 
+    public EmployeeController(IRqChallengeService rqChallengeService) {
+        this.rqChallengeService = rqChallengeService;
+    }
 
     /**
      * Endpoint API to return list of all employees
@@ -41,7 +42,7 @@ public class EmployeeController implements IEmployeeController {
         logger.info("Received request for endpoint 'getEmployeesByNameSearch'");
         List<Employee> employeesByNameSearchList = rqChallengeService.getEmployeesByNameSearch(searchString);
 
-        if(employeesByNameSearchList.size() > 0 ){
+        if(!employeesByNameSearchList.isEmpty()){
             return new ResponseEntity<>(employeesByNameSearchList,
                     HttpStatus.OK);
         } else {
@@ -108,8 +109,6 @@ public class EmployeeController implements IEmployeeController {
     public ResponseEntity<String> deleteEmployeeById(String id) {
         logger.info("Received request for endpoint 'deleteEmployeeById'");
         String response = rqChallengeService.deleteEmployeeById(id);
-
-        return new ResponseEntity<>(response.toString(),
-                HttpStatus.OK);
+        return new ResponseEntity<>(response,HttpStatus.OK);
     }
 }

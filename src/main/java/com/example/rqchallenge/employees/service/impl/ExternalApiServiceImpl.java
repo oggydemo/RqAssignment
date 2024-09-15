@@ -1,10 +1,10 @@
-package com.example.rqchallenge.employees.service;
+package com.example.rqchallenge.employees.service.impl;
 
 import com.example.rqchallenge.employees.constant.RqChallengeConstants;
 import com.example.rqchallenge.employees.model.response.ExternalApiCreateResponse;
 import com.example.rqchallenge.employees.model.Employee;
 import com.example.rqchallenge.employees.model.response.ExternalApiResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.rqchallenge.employees.service.IExternalApiService;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -17,9 +17,11 @@ import java.util.*;
 @Service
 public class ExternalApiServiceImpl implements IExternalApiService {
 
-    @Autowired
     RestTemplate restTemplate;
 
+    public ExternalApiServiceImpl(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     /**
      * Method to call Dummy API resource to get list of all employees
@@ -27,8 +29,7 @@ public class ExternalApiServiceImpl implements IExternalApiService {
     public List<Employee> callDummyApiTogetAllEmployees() {
         ExternalApiResponse responseObj = restTemplate.getForObject(
                 RqChallengeConstants.GET_ALL_EMPLOYEE_LIST, ExternalApiResponse.class);
-        List<Employee> totalEmployees = Arrays.asList(responseObj.getData());
-        return totalEmployees;
+        return Arrays.asList(responseObj.getData());
     }
 
     /**
@@ -36,7 +37,7 @@ public class ExternalApiServiceImpl implements IExternalApiService {
      */
 
     public Employee callDummyApitoGetEmployeebyId(Integer employeeId){
-        ExternalApiCreateResponse responseObj = restTemplate.getForObject(
+        ExternalApiCreateResponse responseObj =  restTemplate.getForObject(
                 RqChallengeConstants.GET_EMPLOYEE_BY_ID, ExternalApiCreateResponse.class,employeeId);
         return responseObj.getData();
     }
@@ -53,7 +54,6 @@ public class ExternalApiServiceImpl implements IExternalApiService {
      * Method to call Dummy API resource to create an employee
      */
     public Employee callDummyApiToCreateEmployee(Employee employeeInput) {
-        RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();

@@ -1,8 +1,9 @@
-package com.example.rqchallenge.employees.service;
+package com.example.rqchallenge.employees.service.impl;
 
 import com.example.rqchallenge.employees.constant.RqChallengeConstants;
 import com.example.rqchallenge.employees.model.Employee;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.rqchallenge.employees.service.IExternalApiService;
+import com.example.rqchallenge.employees.service.IRqChallengeService;
 import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.List;
@@ -10,12 +11,13 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class RqChallengeServiceImpl implements  IRqChallengeService{
+public class RqChallengeServiceImpl implements IRqChallengeService {
 
-
-    @Autowired
     private IExternalApiService externalApiService;
 
+    public RqChallengeServiceImpl(IExternalApiService externalApiService) {
+        this.externalApiService = externalApiService;
+    }
 
     /**
      * Method to get list of all employees
@@ -31,10 +33,9 @@ public class RqChallengeServiceImpl implements  IRqChallengeService{
     public List<Employee> getEmployeesByNameSearch(String matchToName) {
 
         List<Employee> totalEmployees = externalApiService.callDummyApiTogetAllEmployees();
-        List<Employee> result = totalEmployees.stream()
+        return totalEmployees.stream()
                 .filter(line -> line.getEmployee_name().contains(matchToName))
                 .collect(Collectors.toList());
-        return result;
     }
 
     /**
@@ -71,11 +72,10 @@ public class RqChallengeServiceImpl implements  IRqChallengeService{
                 .limit(10)
                 .collect(Collectors.toList());
 
-        List<String> topTenEmployeeNames = topTenEmployees.stream()
-                .map(object -> object.getEmployee_name())
+        return topTenEmployees.stream()
+                .map(Employee::getEmployee_name)
                 .collect(Collectors.toList());
 
-        return topTenEmployeeNames;
     }
 
     /**
